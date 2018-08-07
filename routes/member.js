@@ -13,6 +13,22 @@ router.post('/signin', (req, res)=>{
   console.log('[POST]/member/signin...');
 
   // To do...
+  Member.findOne({userid:req.body.userid}, (err, member)=>{
+    if(err) throw err;
+
+    if(!member){
+      return res.json({success:false, message:'There are not matched id'});
+    }
+
+    if(!member.validateHash(req.body.passwd)){
+      return res.json({success:false, message:'Not valid password'});
+    }
+
+    let session = req.session;
+    session._id = member.userid;
+
+    return res.json({success:true});
+  })
 });
 
 router.get('/signup', (req, res)=>{
