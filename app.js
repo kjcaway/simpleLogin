@@ -22,9 +22,20 @@ app.use(
   })
 );
 
-app.use('/', express.static(path.join(__dirname, '/public')));
+app.get('/', (req, res)=>{
+  console.log('[GET]/...');
+
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 app.use(bodyParser.urlencoded({ extended: true })); // html form태그 데이터 넘길때 이렇게 설정해줘야함
 app.use('/api', api);
+
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 
 mongoose.connect('mongodb://192.168.56.1/test',(err)=>{
   if(err){
