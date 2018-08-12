@@ -31,8 +31,9 @@ app.get('/', (req, res)=>{
   console.log('[GET]/...');
 
   //res.sendFile(path.join(__dirname, './public/index.html'));
-  let userid = req.session._id;
-  res.render('index', {userid:userid});
+  res.render('index', {
+    session: req.session
+  });
 });
 
 app.use(bodyParser.urlencoded({ extended: true })); // html form태그 데이터 넘길때 이렇게 설정해줘야함

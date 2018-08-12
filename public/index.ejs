@@ -9,7 +9,7 @@
 <body>
     <% include ./header.ejs %>
     <div class="container">
-        Hello <%= (userid != null?userid:'stranger') %> !!
+        Hello <%= (session._id != null?session._id:'Stranger') %> !!
     </div>
 </body>
 </html>
