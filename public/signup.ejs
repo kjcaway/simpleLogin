@@ -14,18 +14,19 @@
         return false;
       }
 
-      return false;
+      return true;
+    }
+
+    function init(){
+      var success = <%= success%>;
+      if(!success){
+        alert('<%= message%>')
+      }
     }
   </script>
 </head>
-<body>
-  <div class="nav-bar">
-    <ul>
-      <li><a href="/">HOME</a></li>
-      <li><a href="/api/member/signin">SIGN IN</a></li>
-      <li><a href="/api/member/signup">SIGN UP</a></li>
-    </ul>
-  </div>
+<body onload="init();">
+  <% include ./header.ejs %>
   <div class="container">
     <h2>회원가입</h2>
     <form id="signupForm" action="signup" method="post" onSubmit="return valid()">

@@ -4,6 +4,7 @@ const session = require('express-session');
 const path = require('path');
 const api = require('./routes');
 const mongoose = require('mongoose');
+const ejs = require('ejs');
 
 const db = mongoose.connection;
 db.on('error', console.error);
@@ -22,10 +23,16 @@ app.use(
   })
 );
 
+app.set('views', __dirname + '/public');
+app.set('view engine', 'ejs');
+app.engine('html', ejs.renderFile);
+
 app.get('/', (req, res)=>{
   console.log('[GET]/...');
 
-  res.sendFile(path.join(__dirname, './public/index.html'));
+  //res.sendFile(path.join(__dirname, './public/index.html'));
+  let userid = req.session._id;
+  res.render('index', {userid:userid});
 });
 
 app.use(bodyParser.urlencoded({ extended: true })); // html form태그 데이터 넘길때 이렇게 설정해줘야함

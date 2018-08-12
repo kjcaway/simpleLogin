@@ -7,15 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div class="nav-bar">
-        <ul>
-            <li><a href="/">HOME</a></li>
-            <li><a href="/api/member/signin">SIGN IN</a></li>
-            <li><a href="/api/member/signup">SIGN UP</a></li>
-        </ul>
-    </div>
+    <% include ./header.ejs %>
     <div class="container">
-        HelloWorld
+        Hello <%= (userid != null?userid:'stranger') %> !!
     </div>
 </body>
 </html>
