@@ -36,6 +36,9 @@ app.get('/', (req, res)=>{
   });
 });
 
+app.use('/js', express.static(__dirname + '/static/js'));
+app.use('/css', express.static(__dirname + '/static/css'));
+
 app.use(bodyParser.urlencoded({ extended: true })); // html form태그 데이터 넘길때 이렇게 설정해줘야함
 app.use('/api', api);
 
