@@ -1,46 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
   <title>Document</title>
   <script>
-    function valid(){
+    function fncSubmit() {
       var form = document.getElementById('signupForm');
 
-      if(form.passwd.value != form.passwd_again.value){
+      if (form.passwd.value != form.passwd_again.value) {
         alert("비밀번호가 일치하지않습니다.");
         return false;
       }
 
-      return true;
+      form.submit();
     }
 
-    function init(){
+    function init() {
       var success = <%= success%>;
-      if(!success){
+      if (!success) {
         alert('<%= message%>')
       }
     }
+
   </script>
 </head>
+
 <body onload="init();">
   <% include ./header.ejs %>
-  <div class="container">
-    <h2>회원가입</h2>
-    <form id="signupForm" action="signup" method="post" onSubmit="return valid()">
-      <label for="userid">아이디 : </label>
-      <input type="text" id="userid" name="userid" placeholder="아이디"/>
-      <br/>
-      <label for="passwd">비밀번호 : </label>
-      <input type="password" id="passwd" name="passwd" placeholder="비밀번호"/>
-      <br/>
-      <label for="passwd_again">비밀번호 확인 : </label>
-      <input type="password" id="passwd_again" name="passwd_again" placeholder="비밀번호 확인"/>
-      <br/>
-      <button type="submit">회원가입</button>
-    </form>
-  </div>
+    <main role="main" class="container">
+      <div class="starter-template">
+        <h2>회원가입</h2>
+        <form id="signupForm" action="signup" method="post">
+          <label for="userid">아이디 : </label>
+          <input type="text" id="userid" name="userid" placeholder="아이디" />
+          <br/>
+          <label for="passwd">비밀번호 : </label>
+          <input type="password" id="passwd" name="passwd" placeholder="비밀번호" />
+          <br/>
+          <label for="passwd_again">비밀번호 확인 : </label>
+          <input type="password" id="passwd_again" name="passwd_again" placeholder="비밀번호 확인" />
+          <br/>
+          <a href="/api/member/signup" class="sl-btn blue" onclick="fncSubmit(); return false;">가입하기</a>
+        </form>
+      </div>
+    </main>
+
+    <% include ./footer.ejs %>
 </body>
+
 </html>
