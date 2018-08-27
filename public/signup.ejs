@@ -30,25 +30,19 @@
   </script>
 </head>
 
-<body onload="init();">
+<body onload="init();" class="text-center">
   <% include ./header.ejs %>
-    <main role="main" class="container">
-      <div class="starter-template">
-        <h2>회원가입</h2>
-        <form id="signupForm" action="signup" method="post">
-          <label for="userid">아이디 : </label>
-          <input type="text" id="userid" name="userid" placeholder="아이디" />
-          <br/>
-          <label for="passwd">비밀번호 : </label>
-          <input type="password" id="passwd" name="passwd" placeholder="비밀번호" />
-          <br/>
-          <label for="passwd_again">비밀번호 확인 : </label>
-          <input type="password" id="passwd_again" name="passwd_again" placeholder="비밀번호 확인" />
-          <br/>
-          <a href="/api/member/signup" class="sl-btn blue" onclick="fncSubmit(); return false;">가입하기</a>
-        </form>
-      </div>
-    </main>
+  <form id="signupForm" action="signup" method="post" class="form-signin">
+      <h2 class="form-signin-heading">회원가입</h2>
+      <label for="userid" class="sr-only">아이디 : </label>
+      <input type="text" id="userid" name="userid" placeholder="아이디" class="form-control" required autofocus/>
+      <br/>
+      <label for="passwd" class="sr-only">비밀번호 : </label>
+      <input type="password" id="passwd" name="passwd" placeholder="비밀번호" class="form-control" required/>
+      <label for="passwd_again" class="sr-only">비밀번호 확인 : </label>
+      <input type="password" id="passwd_again" name="passwd_again" placeholder="비밀번호 확인" class="form-control" required/>
+      <a href="/api/member/signup" class="sl-btn blue" onclick="fncSubmit(); return false;">가입하기</a>
+    </form>
 
     <% include ./footer.ejs %>
 </body>
