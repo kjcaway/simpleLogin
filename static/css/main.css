@@ -7,11 +7,6 @@ body {
   text-align: center;
 }
 
-.sl-lf{
-  position: relative;
-  left: 30px;
-}
-
 .sl-btn{
   text-decoration: none;
   font-size:12px;
@@ -67,4 +62,15 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.pl10 {
+  padding-left:10%;
+}
+.pl20p {
+  padding-left:20px;
+}
+
+span.blue{
+  color: blue;
 }

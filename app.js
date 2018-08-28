@@ -30,7 +30,6 @@ app.engine('html', ejs.renderFile);
 app.get('/', (req, res)=>{
   console.log('[GET]/...');
 
-  //res.sendFile(path.join(__dirname, './public/index.html'));
   res.render('index', {
     session: req.session
   });
