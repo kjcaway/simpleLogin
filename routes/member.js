@@ -16,8 +16,27 @@ router.get('/signin', (req, res) => {
 router.post('/signin', (req, res) => {
   console.log('[POST]/member/signin...');
 
+  let userId = req.body.userid;
+  let passWd = req.body.passwd;
+
+  if(userId === ''){
+    return res.render('signin', {
+      success: false,
+      message: '아이디를 입력하세요.',
+      session: req.session
+    });
+  }
+
+  if(passWd === ''){
+    return res.render('signin', {
+      success: false,
+      message: '아이디를 입력하세요.',
+      session: req.session
+    });
+  }
+
   // To do...
-  Member.findOne({ userid: req.body.userid }, (err, member) => {
+  Member.findOne({ userid: userId }, (err, member) => {
     if (err) throw err;
 
     if (!member) {
@@ -28,7 +47,7 @@ router.post('/signin', (req, res) => {
       });
     }
 
-    if (!member.validateHash(req.body.passwd)) {
+    if (!member.validateHash(passWd)) {
       return res.render('signin', {
         success: false,
         message: '비밀번호를 확인하세요.',
@@ -91,6 +110,22 @@ router.get('/logout', (req, res) => {
   let session = req.session;
   session.destroy((err) => { if (err) throw err });
   return res.redirect('/');
+});
+
+router.get('/', (req, res) => {
+  console.log("[GET]/member/ ...");
+  Member.find()
+  .sort({'created': -1})
+  .exec((err, members) => {
+    if(err) throw err;
+
+    return res.render('memberlist', {
+      success: true,
+      message: '',
+      session: req.session,
+      data: members
+    });
+  });
 });
 
 module.exports = router;

@@ -11,8 +11,19 @@
   <script>
     function fncSubmit() {
       var form = document.getElementById('signupForm');
+      var userId = form.userid.value;
+      var passWd = form.passwd.value;
+      var passWd_again = form.passwd_again.value;
 
-      if (form.passwd.value != form.passwd_again.value) {
+      if(userId == ''){
+        alert("아이디를 입력하세요.");
+        return false;
+      }
+      if(passWd == ''){
+        alert("비밀번호를 입력하세요.");
+        return false;
+      }
+      if (passWd != passWd_again) {
         alert("비밀번호가 일치하지않습니다.");
         return false;
       }

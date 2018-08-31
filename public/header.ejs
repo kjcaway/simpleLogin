@@ -10,16 +10,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <% if(session._id == null){ %>
       <li class="nav-item">
-        <a class="nav-link" href="/api/member/signin">로그인</a>
+        <a class="nav-link" href="/api/member/">회원관리 <span class="sr-only">(current)</span></a>
       </li>
-      <% } %>
-      <% if(session._id != null){ %>
-      <li class="nav-item">
-        <a class="nav-link" href="/api/member/logout">로그아웃</a>
-      </li>
-      <% } %>
       <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
@@ -38,4 +31,15 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+  <ul class="navbar-nav px-3">
+    <% if(session._id == null){ %>
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="/api/member/signin">로그인</a>
+      </li>
+    <% }else{ %>
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="/api/member/logout">로그아웃</a>
+      </li>
+    <% } %>
+  </ul>
 </nav>
